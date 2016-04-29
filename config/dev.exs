@@ -35,8 +35,6 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :phoenix_webpack, PhoenixWebpack.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
   database: "phoenix_webpack_dev",
   hostname: "localhost",
   pool_size: 10
