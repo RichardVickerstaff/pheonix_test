@@ -1,2 +1,10 @@
-<div id="messages"></div>
+<table id="messages">
+  <%= for message <- @messages do %>
+    <tr>
+      <td><%= message.inserted_at %></td>
+      <td><%= message.body %></td>
+    </tr>
+  <% end %>
+  <td>
+</table>
 <input id="chat-input" type="text"></input>

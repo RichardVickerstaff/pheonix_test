@@ -1,6 +1,9 @@
 defmodule PhoenixWebpack.RoomChannel do
   use Phoenix.Channel
 
+  alias PhoenixWebpack.Message
+  alias PhoenixWebpack.Repo
+
   def join("rooms:lobby", _message, socket) do
     {:ok, socket}
   end
@@ -8,9 +11,15 @@ defmodule PhoenixWebpack.RoomChannel do
     {:error, %{reason: "unauthorized"}}
   end
 
-   def handle_in("new_msg", %{"body" => body}, socket) do
-    broadcast! socket, "new_msg", %{body: body}
-    {:noreply, socket}
+   def handle_in("new_msg", params, socket) do
+    changeset = Message.changeset(%Message{}, params)
+    case Repo.insert(changeset) do
+      {:ok, message} ->
+         broadcast! socket, "new_msg", %{body: message.body, inserted_at: message.inserted_at}
+         {:noreply, socket}
+      {:error, changeset} ->
+        IO.puts changeset
+    end
   end
 
   def handle_out("new_msg", payload, socket) do

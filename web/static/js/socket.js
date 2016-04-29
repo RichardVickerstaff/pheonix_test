@@ -66,7 +66,7 @@ chatInput.on("keypress", event => {
 })
 
 channel.on("new_msg", payload => {
-  messagesContainer.append(`<br/>[${Date()}] ${payload.body}`)
+  messagesContainer.append(`<tr><td>${payload.inserted_at}</td><td>${payload.body}</td></tr>`)
 })
 
 channel.join()
