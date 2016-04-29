@@ -2,7 +2,7 @@ defmodule PhoenixWebpack.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", PhoenixWebpack.RoomChannel
+  channel "rooms:*", PhoenixWebpack.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

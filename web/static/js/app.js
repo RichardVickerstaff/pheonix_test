@@ -13,6 +13,7 @@
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
 import { Socket } from "phoenix";
+import socket from "./socket"
 
 // Import local files
 //
